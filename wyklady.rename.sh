@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+find -name "* *" -type f | rename 's/ /_/g'
+find -type f | rename 's/(.*)\/([^\/]*)/$1\/\L$2/'
+find -type f | rename 's/ą/a/g'
+find -type f | rename 's/ć/c/g'
+find -type f | rename 's/ę/e/g'
+find -type f | rename 's/ł/l/g'
+find -type f | rename 's/ń/n/g'
+find -type f | rename 's/ó/o/g'
+find -type f | rename 's/ś/s/g'
+find -type f | rename 's/ż/z/g'
+find -type f | rename 's/ź/z/g'
