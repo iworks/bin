@@ -7,9 +7,9 @@ then
 fi
 
 NAME=${1}
-SLUG=${NAME/ /-}
+SLUG=${NAME// /-}
 SLUG=${SLUG,,}
-CLASS=${SLUG/-/_}
+CLASS=${SLUG//-/_}
 PREFIX=${CLASS^^}
 
 echo Plugin class:  ${CLASS}
