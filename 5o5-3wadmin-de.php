@@ -1,8 +1,14 @@
 #!/usr/bin/php -d memory_limit=20480M
 <?php
 
+
+
 if ( empty( $argv ) ) {
 	die( 'o file' );
+}
+
+function d( $a ) {
+	print_r( $a );
 }
 
 $result = array(
@@ -97,8 +103,7 @@ foreach ( $result as &$row ) {
  * output
  */
 if ( false !== ( $handle = fopen( $argv[1], 'w' ) ) ) {
-	foreach ( $result as $row ) {
-		fputcsv( $handle, $row );
+	foreach ( $result as $a ) {
+		fputcsv( $handle, $a );
 	}
 }
-
