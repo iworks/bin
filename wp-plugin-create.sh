@@ -22,7 +22,7 @@ cd ${SLUG}
 #
 # replace plugin name
 #
-FILES=$(find -type f|grep -E "php|pot|json|Gruntfile.js")
+FILES=$(find -type f|grep -E "txt|php|pot|json|Gruntfile.js")
 perl -pi -e "s/wordpress-plugin-stub/${SLUG}/g"   ${FILES}
 perl -pi -e "s/WORDPRESS_PLUGIN_STUB/${PREFIX}/g" ${FILES}
 perl -pi -e "s/wordpress_plugin_stub/${CLASS}/g"  ${FILES}
@@ -33,12 +33,15 @@ perl -pi -e "s/WordPress Plugin Stub/${NAME}/g"   ${FILES}
 mkdir -p ./assets/scripts/admin/src
 mkdir -p ./assets/sass/admin
 mkdir -p ./assets/styles/admin
-mkdir -p ./vendor/iworks
+mkdir -p ./includes/iworks
 #
 # rename files
 #
 mv wordpress-plugin-stub.php ${SLUG}.php
-mv vendor/iworks/wordpress-plugin-stub.php vendor/iworks/${SLUG}.php
+mv includes/iworks/wordpress-plugin-stub.php includes/iworks/${SLUG}.php
 mv languages/wordpress-plugin-stub.pot languages/${SLUG}.pot
 
-git submodule add git@github.com:iworks/wordpress-options-class.git vendor/iworks/options
+rm -rf .git
+
+echo git submodule add git@github.com:iworks/wordpress-options-class.git includes/iworks/options
+echo git submodule add git@github.com:iworks/iworks-rate.git includes/iworks/rate
