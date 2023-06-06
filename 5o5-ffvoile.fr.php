@@ -27,7 +27,10 @@ if ( false !== ( $handle = fopen( $argv[1], 'r' ) ) ) {
 	$number_of_races       = 0;
 	$number_of_competitors = 0;
 	while ( ( $one = fgetcsv( $handle, 0, ',' ) ) !== false ) {
-		if ( 'place ' === $one[0] ) {
+		if (
+			preg_match( '/place/', $one[1] )
+			&& preg_match( '/licences/', $one[2] )
+		) {
 			continue;
 		}
 		if ( $odd ) {
