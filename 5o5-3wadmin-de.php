@@ -23,9 +23,23 @@ $result = array(
 if ( false !== ( $handle = fopen( $argv[1], 'r' ) ) ) {
 	$number_of_races       = 0;
 	$number_of_competitors = 0;
+	$check                 = true;
 	while ( ( $one = fgetcsv( $handle, 0, ',' ) ) !== false ) {
 		if ( 'Platz' === $one[0] ) {
+			$check = false;
 			continue;
+		}
+		/**
+		 * int505.de
+		 */
+		if ( 'Pl.' === $one[0] ) {
+			$check = false;
+			continue;
+		}
+		if ( $check ) {
+			echo 'smth wrong!';
+			d( $one );
+			die;
 		}
 		$number_of_competitors++;
 		$n = explode( ' ', $one['4'] );
