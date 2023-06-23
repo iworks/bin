@@ -7,5 +7,6 @@ FILE=${1}
 
 echo ${FILE}
 git add ${FILE}
-/home/illi/bin/5o5-ffvoile.fr.php ${FILE}
-./bin/import.php e
+${HOME}/bin/5o5-ffvoile.fr.2023.php ${FILE}
+./bin/import.php e ${FILE}
+
