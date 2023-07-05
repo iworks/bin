@@ -3,6 +3,7 @@
 if [ -z "$1" ]
 then
     echo "No argument supplied"
+    echo "usage $0 'Plugin Name'"
     exit
 fi
 
