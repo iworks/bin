@@ -39,10 +39,12 @@ mkdir -p ./includes/iworks
 # rename files
 #
 mv wordpress-plugin-stub.php ${SLUG}.php
-mv includes/iworks/wordpress-plugin-stub.php includes/iworks/${SLUG}.php
+mv includes/iworks/class-wordpress-plugin-stub.php includes/iworks/class-${SLUG}.php
+mv includes/iworks/class-wordpress-plugin-stub-base.php includes/iworks/class-${SLUG}-base.php
+mv includes/iworks/class-wordpress-plugin-stub-posttypes.php includes/iworks/class-${SLUG}-posttypes.php
 mv languages/wordpress-plugin-stub.pot languages/${SLUG}.pot
 
-rm -rf .git
+rm -rf ./.git ./assets/bin
 
 echo git submodule add git@github.com:iworks/wordpress-options-class.git includes/iworks/options
 echo git submodule add git@github.com:iworks/iworks-rate.git includes/iworks/rate
