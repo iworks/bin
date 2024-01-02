@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-echo "Update iWorks Options"
+if [ -d includes/iworks/options ]; then
+    echo "Update iWorks Options"
+    cd includes/iworks/options && git pull
+    cd -
+fi
 
-cd includes/iworks/options && git pull
-cd -
-
-echo "Update iWorks Rate"
-cd includes/iworks/rate && git pull
-cd -
+if [ -d includes/iworks/rate ]; then
+    echo "Update iWorks Rate"
+    cd includes/iworks/rate && git pull
+    cd -
+fi

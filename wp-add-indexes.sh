@@ -7,7 +7,7 @@ fi
 
 ROOT=${1%/}
 
-if [ ! -f "${ROOT}" ]; then
+if [ ! -d "${ROOT}" ]; then
     echo "Usage: $0 <directory>"
     echo "Can't access to \"${ROOT}\"."
     exit 1
