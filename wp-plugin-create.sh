@@ -3,21 +3,44 @@
 if [ -z "$1" ]
 then
     echo "No argument supplied"
-    echo "usage $0 'Plugin Name'"
+    echo "usage $0 'Plugin Name' <plugin-slug> <plugin-prefix>"
     exit
 fi
-
+#
+# Plugin Name
+#
 NAME=${1}
+#
+# Plugin Slug
+#
 SLUG=${NAME// /-}
+if [ "$2" ]
+then
+    SLUG=$2
+fi
 SLUG=${SLUG,,}
+#
+# Plugin Class
+#
 CLASS=${SLUG//-/_}
-PREFIX=${CLASS^^}
-
+#
+# Plugin Prefix
+PREFIX=${CLASS}
+if [ "$3" ]
+then
+    PREFIX=$3_
+fi
+PREFIX=${PREFIX^^}
+#
+# SHOW data
+#
 echo Plugin class:  ${CLASS}
 echo Plugin name:   ${NAME}
 echo Plugin prefix: ${PREFIX}
 echo Plugin slug:   ${SLUG}
-
+#
+# clone plugin stub
+#
 git clone git@github.com:iworks/wordpress-plugin-stub.git ${SLUG}
 cd ${SLUG}
 #
