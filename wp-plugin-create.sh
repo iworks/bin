@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
+#
+# check input
+#
 if [ -z "$1" ]
 then
     echo "No argument supplied"
@@ -44,14 +46,6 @@ echo Plugin slug:   ${SLUG}
 git clone git@github.com:iworks/wordpress-plugin-stub.git ${SLUG}
 cd ${SLUG}
 #
-# replace plugin name
-#
-FILES=$(find -type f|grep -E "txt|php|pot|json|Gruntfile.js")
-perl -pi -e "s/wordpress-plugin-stub/${SLUG}/g"   ${FILES}
-perl -pi -e "s/WORDPRESS_PLUGIN_STUB/${PREFIX}/g" ${FILES}
-perl -pi -e "s/wordpress_plugin_stub/${CLASS}/g"  ${FILES}
-perl -pi -e "s/WordPress Plugin Stub/${NAME}/g"   ${FILES}
-#
 # make dirs
 #
 mkdir -p ./assets/scripts/admin/src
@@ -66,8 +60,28 @@ mv includes/iworks/class-wordpress-plugin-stub.php includes/iworks/class-${SLUG}
 mv includes/iworks/class-wordpress-plugin-stub-base.php includes/iworks/class-${SLUG}-base.php
 mv includes/iworks/class-wordpress-plugin-stub-posttypes.php includes/iworks/class-${SLUG}-posttypes.php
 mv languages/wordpress-plugin-stub.pot languages/${SLUG}.pot
-
+#
+# rename files: post type classes
+#
+FILES=$(find -type f|grep class-wordpress-plugin-stub-posttype)
+for file in ${FILES}
+do
+    mv $file ${file/wordpress-plugin-stub/$SLUG}
+done
+#
+# rename files
+#
+FILES=$(find -type f|grep -E "txt|php|pot|json|Gruntfile.js")
+perl -pi -e "s/wordpress-plugin-stub/${SLUG}/g"   ${FILES}
+perl -pi -e "s/WORDPRESS_PLUGIN_STUB/${PREFIX}/g" ${FILES}
+perl -pi -e "s/wordpress_plugin_stub/${CLASS}/g"  ${FILES}
+perl -pi -e "s/WordPress Plugin Stub/${NAME}/g"   ${FILES}
+#
+# delete
+#
 rm -rf ./.git ./assets/bin
-
+#
+# echo binded
+#
 echo git submodule add git@github.com:iworks/wordpress-options-class.git includes/iworks/options
 echo git submodule add git@github.com:iworks/iworks-rate.git includes/iworks/rate
