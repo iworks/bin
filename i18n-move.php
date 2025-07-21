@@ -15,6 +15,7 @@ $languages=[
     'de' => 'de_DE',
     'es' => 'es_ES',
     'fa' => 'fa_IR',
+    'fi' => 'fi',
     'fr' => 'fr_FR',
     'he' => 'he_IL',
     'it' => 'it_IT',
