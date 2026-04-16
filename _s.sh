@@ -1,1 +1,0 @@
-/home/illi/iworks.repos/iworks/wordpress/_s_to_wp_theme/bin/generate.sh
