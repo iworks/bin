@@ -18,3 +18,13 @@ sed -i -E 's/<\/span>//g' "$file"
 # Remove div tags
 sed -i -E 's/<div[^>]*>//g' "$file"
 sed -i -E 's/<\/div>//g' "$file"
+
+# Replace all whitespace after <p> with <p>
+sed -i -E ':a;N;$!ba;s/<p>[[:space:]]+/<p>/g' "$file"
+
+# Replace all whitespace before </p> with </p>
+sed -i -E ':a;N;$!ba;s/[[:space:]]+<\/p>/<\/p>/g' "$file"
+
+#remove IMG tag
+sed -i -E 's/<img[^>]*>//g' "$file"
+
